@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Screen Addiction Awareness</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+
+    <!-- AOS Animation Library -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <!-- Hero Section -->
+    <header class="hero" data-aos="fade-in">
+        <h1><b>Screened Out!</b></h1>
+        <h2>You're not offline, you're alive.</h2>
+        <img src="addiction.jpg.png" class="hero-img" />
+        <button class="start-btn" onclick="scrollToSection('dangers')">Start</button>
+    </header>
+
+    <section id="dangers" class="section two-column">
+        <div class="content">
+            <div class="text-side" data-aos="fade-right">
+                <h2>What is Screen Addiction?</h2>
+                <p>
+                    Screen addiction is the excessive use of smartphones, tablets, or computers, often leading to
+                    difficulty in focusing, loss of real-life connection, and disturbed daily routines.
+                </p>
+            </div>
+            <div class="image-side" data-aos="fade-left">
+                <img src="addiction_screen.png" alt="Screen addiction animation" class="animated-image" />
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Dangers Section -->
+    <section class="section cards-section" data-aos="zoom-in">
+        <h2>Dangers of Screen Addiction</h2>
+        <div class="cards">
+            <div class="card">👁️ Eye strain & headaches</div>
+            <div class="card">💤 Poor sleep quality</div>
+            <div class="card">😔 Anxiety & loneliness</div>
+        </div>
+    </section>
+
+    <!-- ✅ HTML STRUCTURE -->
+    <section class="section" id="intro-question">
+        <h2>Do you want to know your screen addiction level?</h2>
+        <button id="startTestBtn">Start the Test</button>
+    </section>
+
+    <section class="section" id="quizSection" style="display: none;">
+        <h2>Screen Addiction Quiz</h2>
+        <div id="progressBarContainer">
+            <div id="progressBar"></div>
+        </div>
+        <form id="quizForm">
+            <div id="questionContainer"></div>
+            <button type="button" id="nextBtn">Next</button>
+        </form>
+        <div id="resultBox" style="display: none;"></div>
+    </section>
+
+    <!-- ✅ CSS STYLING -->
+    <style>
+        .section {
+            max-width: 700px;
+            margin: auto;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        #progressBarContainer {
+            width: 100%;
+            background-color: #eee;
+            border-radius: 10px;
+            height: 12px;
+            margin-bottom: 25px;
+        }
+
+        #progressBar {
+            height: 100%;
+            width: 0%;
+            background-color: #6c63ff;
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+
+        .question {
+            animation: fadeSlide 0.6s ease-in-out;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .question label {
+            display: block;
+            background-color: #e6e0ff;
+            color: #3f3d56;
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin: 12px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            border: 2px solid transparent;
+        }
+
+        .question label:hover {
+            background-color: #d1c7ff;
+        }
+
+        .question input[type="radio"] {
+            display: none;
+        }
+
+        .question input[type="radio"]:checked+label {
+            background-color: #6c63ff;
+            color: white;
+            border-color: #3f3d56;
+        }
+
+        #nextBtn {
+            margin-top: 20px;
+            padding: 12px 25px;
+            background-color: #6c63ff;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #nextBtn:hover {
+            background-color: #574fd6;
+        }
+
+        #resultBox {
+            margin-top: 30px;
+            font-size: 18px;
+            background-color: #f5f5ff;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        @keyframes fadeSlide {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    </style>
+
+    <!-- ✅ JAVASCRIPT FUNCTIONALITY -->
+    <script>
+        const questions = [
+            { text: "Do you check your phone immediately after waking up?", options: ["Always", "Sometimes", "Rarely"] },
+            { text: "Do you feel anxious when your phone isn't with you?", options: ["Always", "Sometimes", "Rarely"] },
+            { text: "Do you use your phone during meals or social gatherings?", options: ["Always", "Sometimes", "Rarely"] },
+            { text: "Do you lose track of time while using your phone?", options: ["Always", "Sometimes", "Rarely"] },
+            { text: "Do you stay up late using your phone?", options: ["Always", "Sometimes", "Rarely"] },
+            { text: "Do you check notifications during important tasks?", options: ["Always", "Sometimes", "Rarely"] },
+            { text: "Do you feel bored or uncomfortable without a screen?", options: ["Always", "Sometimes", "Rarely"] }
+        ];
+
+        const scores = {
+            "Always": 3,
+            "Sometimes": 2,
+            "Rarely": 1
+        };
+
+        let currentQuestion = 0;
+        let answers = [];
+
+        const startBtn = document.getElementById("startTestBtn");
+        const quizSection = document.getElementById("quizSection");
+        const questionContainer = document.getElementById("questionContainer");
+        const nextBtn = document.getElementById("nextBtn");
+        const progressBar = document.getElementById("progressBar");
+        const resultBox = document.getElementById("resultBox");
+
+        startBtn.addEventListener("click", () => {
+            document.getElementById("intro-question").style.display = "none";
+            quizSection.style.display = "block";
+            showQuestion();
+        });
+
+        function showQuestion() {
+            const q = questions[currentQuestion];
+            questionContainer.innerHTML = `
+      <div class="question">
+        <p><strong>Q${currentQuestion + 1}:</strong> ${q.text}</p>
+        ${q.options.map((opt, i) => `
+          <input type="radio" id="q${currentQuestion}_opt${i}" name="q${currentQuestion}" value="${opt}" required />
+          <label for="q${currentQuestion}_opt${i}">${opt}</label>
+        `).join("")}
+      </div>
+    `;
+
+            const progress = ((currentQuestion) / questions.length) * 100;
+            progressBar.style.width = progress + "%";
+        }
+
+        nextBtn.addEventListener("click", () => {
+            const selected = document.querySelector(`input[name="q${currentQuestion}"]:checked`);
+            if (!selected) {
+                alert("Please select an answer.");
+                return;
+            }
+
+            answers.push(scores[selected.value]);
+            currentQuestion++;
+
+            if (currentQuestion < questions.length) {
+                showQuestion();
+            } else {
+                showResult();
+            }
+        });
+
+        function showResult() {
+            document.getElementById("quizForm").style.display = "none";
+            const total = answers.reduce((a, b) => a + b, 0);
+            const max = questions.length * 3;
+            let msg = "", advice = "";
+
+            if (total >= 16) {
+                msg = "⚠️ You show strong signs of screen addiction.";
+                advice = "Try scheduling more offline activities and screen-free hours.";
+            } else if (total >= 11) {
+                msg = "🙂 You have some tendencies toward overuse.";
+                advice = "Set app timers and avoid screens before sleep.";
+            } else {
+                msg = "🎉 You're doing great!";
+                advice = "Maintain screen breaks and stay active offline.";
+            }
+
+            resultBox.innerHTML = `
+      <p><strong>Your Score:</strong> ${total} / ${max}</p>
+      <p>${msg}</p>
+      <p><strong>Tip:</strong> ${advice}</p>
+    `;
+            resultBox.style.display = "block";
+
+            // Save to localStorage
+            localStorage.setItem("screenAddictionScore", total);
+        }
+    </script>
+
+
+    <!-- Tips Section -->
+    <section class="section tips" data-aos="fade-right">
+        <h2>Tips to Reduce Screen Time</h2>
+        <ul>
+            <li>⏰ Set screen time limits</li>
+            <li>📴 Turn off notifications</li>
+            <li>📚 Try offline hobbies</li>
+            <li>🚶 Take screen-free walks</li>
+            <li>📱Move social media apps to the last screen.</li>
+            <li>🍝Keep your phone away during meals.</li>
+        </ul>
+    </section>
+
+
+    <!-- Quiz -->
+    <section class="section quiz-section" data-aos="fade-up">
+        <h2>Quick Quiz!</h2>
+        <p>>How many hours do you spend on your phone daily?</p>
+        <div class="quiz-options">
+            <button onclick="checkAnswer('a')">a) Less than 2 hours</button>
+            <button onclick="checkAnswer('b')">b) around 2 - 5 hours</button>
+            <button onclick="checkAnswer('c')">c) More than 5 hours</button>
+        </div>
+        <p id="quizResult"></p>
+    </section>
+
+
+    <!-- Did You Know -->
+    <section class="section fade-section" data-aos="flip-left">
+        <h2>Did You Know?</h2>
+        <ul>
+            <li>The average person checks their phone 96 times a day</li>
+            <li>Using phones before bed reduces deep sleep by 25%.</li>
+            <li>Screen addiction can reduce attention span to just 8 seconds.</li>
+        </ul>
+        <img src="https://cdn-icons-png.flaticon.com/512/3774/3774299.png" alt="Sleep" class="info-img">
+    </section>
+
+
+    <!-- Tip Generator -->
+    <section class="section" data-aos="zoom-in-up">
+        <h2>15 Offline Challenge to do</h2>
+        <button onclick="showAdvice()">Daily Challenge</button>
+        <div id="adviceBox"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Created by NDR</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init();
+        function showAdvice() {
+            const tips = [
+                "Bake homemade cookies or cake.",
+                "Draw or paint something creative.",
+                "Solve a puzzle or play a board game.",
+                "Learn a new dance move.",
+                "Read one chapter of a book",
+                "Learn 5 new words in another language.",
+                "Organize your room or wardrobe.",
+                "Try making a handmade craft (DIY)",
+                "Write a short story or journal your day.",
+                "Try simple yoga poses.",
+                "Do a random act of kindness.",
+                "Build something with LEGO or blocks.",
+                "Write 10 positive affirmations about yourself.",
+            ];
+            const index = Math.floor(Math.random() * tips.length);
+            document.getElementById("adviceBox").innerText = tips[index];
+        }
+
+        function checkAnswer(answer) {
+            const result = document.getElementById("quizResult");
+            if (answer === "a") {
+                result.textContent = "Awesome! You're managing your screen time well.";
+                result.style.color = "green";
+            } else if (answer === "b") {
+                result.textContent = "Not bad, but you can still reduce your screen time";
+                result.style.color = "blue";
+            } else {
+                result.textContent = "Careful! Try setting screen limits to avoid addiction.";
+                result.style.color = "red";
+            }
+        }
+
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+    </script>
+
+</body>
+
+</html>
