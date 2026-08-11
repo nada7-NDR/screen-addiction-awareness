@@ -2,359 +2,1204 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Screen Addiction Awareness</title>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Screened Out! is an interactive awareness campaign about healthy screen habits, screen overuse, and offline balance.">
+
+    <meta name="theme-color" content="#6c63ff">
+
+    <title>Screened Out! | Screen Addiction Awareness</title>
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- AOS Animation Library -->
-    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css" />
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <!-- Hero Section -->
-    <header class="hero" data-aos="fade-in">
-        <h1><b>Screened Out!</b></h1>
-        <h2>You're not offline, you're alive.</h2>
-        <img src="addiction.jpg.png" class="hero-img" />
-        <button class="start-btn" onclick="scrollToSection('dangers')">Start</button>
-    </header>
 
-    <section id="dangers" class="section two-column">
-        <div class="content">
-            <div class="text-side" data-aos="fade-right">
-                <h2>What is Screen Addiction?</h2>
-                <p>
-                    Screen addiction is the excessive use of smartphones, tablets, or computers, often leading to
-                    difficulty in focusing, loss of real-life connection, and disturbed daily routines.
+    <nav class="navbar" id="navbar" aria-label="Main navigation">
+
+        <div class="nav-container">
+
+            <a href="#home" class="nav-logo" aria-label="Screened Out home">
+                Screened<span>Out!</span>
+            </a>
+
+            <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation menu"
+                aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+
+                <a href="#home">Home</a>
+
+                <a href="#dangers">Learn</a>
+
+                <a href="#assessment">Assessment</a>
+
+                <a href="#tips">Tips</a>
+
+                <a href="#challenge">Challenge</a>
+
+                <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle dark mode">
+                    <span id="themeIcon">🌙</span>
+                    <span id="themeText">Dark Mode</span>
+                </button>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+    <main>
+
+        <header class="hero" id="home" data-aos="fade-in">
+
+            <div class="hero-content">
+
+                <span class="hero-badge" data-aos="fade-down" data-aos-delay="150">
+                    📱 Digital Life
+                </span>
+
+                <h1 data-aos="fade-up">
+                    <span>Screened</span> Out!
+                </h1>
+
+                <h2 data-aos="fade-up" data-aos-delay="150">
+                    You're not offline,
+                    <strong>you're alive.</strong>
+                </h2>
+
+                <p class="hero-description" data-aos="fade-up" data-aos-delay="250">
+                    Your screen is a tool, not your whole world.
+                    Learn how to recognize unhealthy screen habits
+                    and create more balance in your everyday life.
                 </p>
+
+                <div class="hero-actions" data-aos="fade-up" data-aos-delay="350">
+
+                    <button class="start-btn" type="button" onclick="scrollToSection('dangers')">
+                        Explore the Problem
+                        <span aria-hidden="true">↓</span>
+                    </button>
+
+                    <button class="secondary-btn" type="button" onclick="scrollToSection('assessment')">
+                        Take the Assessment
+                    </button>
+
+                </div>
+
             </div>
-            <div class="image-side" data-aos="fade-left">
-                <img src="addiction_screen.png" alt="Screen addiction animation" class="animated-image" />
+
+
+            <div class="hero-visual" data-aos="zoom-in" data-aos-delay="300">
+
+                <div class="hero-glow"></div>
+
+                <img src="addiction.jpg.png" class="hero-img" alt="Illustration representing excessive screen use">
+
             </div>
-        </div>
-    </section>
 
 
-    <!-- Dangers Section -->
-    <section class="section cards-section" data-aos="zoom-in">
-        <h2>Dangers of Screen Addiction</h2>
-        <div class="cards">
-            <div class="card">👁️ Eye strain & headaches</div>
-            <div class="card">💤 Poor sleep quality</div>
-            <div class="card">😔 Anxiety & loneliness</div>
-        </div>
-    </section>
+            <div class="scroll-indicator" aria-hidden="true">
+                <span>Scroll to explore</span>
+                <span class="scroll-arrow">↓</span>
+            </div>
 
-    <!-- ✅ HTML STRUCTURE -->
-    <section class="section" id="intro-question">
-        <h2>Do you want to know your screen addiction level?</h2>
-        <button id="startTestBtn">Start the Test</button>
-    </section>
+        </header>
 
-    <section class="section" id="quizSection" style="display: none;">
-        <h2>Screen Addiction Quiz</h2>
-        <div id="progressBarContainer">
-            <div id="progressBar"></div>
-        </div>
-        <form id="quizForm">
-            <div id="questionContainer"></div>
-            <button type="button" id="nextBtn">Next</button>
-        </form>
-        <div id="resultBox" style="display: none;"></div>
-    </section>
+        <section class="section stats-section" aria-labelledby="stats-title" data-aos="fade-up">
 
-    <!-- ✅ CSS STYLING -->
-    <style>
-        .section {
-            max-width: 700px;
-            margin: auto;
-            text-align: center;
-            padding: 40px 20px;
-        }
+            <div class="section-heading">
 
-        #progressBarContainer {
-            width: 100%;
-            background-color: #eee;
-            border-radius: 10px;
-            height: 12px;
-            margin-bottom: 25px;
-        }
+                <span class="section-label">
+                    WHY IT MATTERS
+                </span>
 
-        #progressBar {
-            height: 100%;
-            width: 0%;
-            background-color: #6c63ff;
-            border-radius: 10px;
-            transition: width 0.5s ease;
-        }
+                <h2 id="stats-title">
+                    Small Changes Can Make a Difference
+                </h2>
 
-        .question {
-            animation: fadeSlide 0.6s ease-in-out;
-            margin-bottom: 20px;
-            text-align: left;
-        }
+                <p>
+                    Screen balance is not about giving up technology.
+                    It's about making sure technology works for you.
+                </p>
 
-        .question label {
-            display: block;
-            background-color: #e6e0ff;
-            color: #3f3d56;
-            border-radius: 10px;
-            padding: 15px 20px;
-            margin: 12px 0;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 16px;
-            border: 2px solid transparent;
-        }
-
-        .question label:hover {
-            background-color: #d1c7ff;
-        }
-
-        .question input[type="radio"] {
-            display: none;
-        }
-
-        .question input[type="radio"]:checked+label {
-            background-color: #6c63ff;
-            color: white;
-            border-color: #3f3d56;
-        }
-
-        #nextBtn {
-            margin-top: 20px;
-            padding: 12px 25px;
-            background-color: #6c63ff;
-            color: white;
-            font-size: 16px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        #nextBtn:hover {
-            background-color: #574fd6;
-        }
-
-        #resultBox {
-            margin-top: 30px;
-            font-size: 18px;
-            background-color: #f5f5ff;
-            padding: 20px;
-            border-radius: 10px;
-        }
-
-        @keyframes fadeSlide {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-    </style>
-
-    <!-- ✅ JAVASCRIPT FUNCTIONALITY -->
-    <script>
-        const questions = [
-            { text: "Do you check your phone immediately after waking up?", options: ["Always", "Sometimes", "Rarely"] },
-            { text: "Do you feel anxious when your phone isn't with you?", options: ["Always", "Sometimes", "Rarely"] },
-            { text: "Do you use your phone during meals or social gatherings?", options: ["Always", "Sometimes", "Rarely"] },
-            { text: "Do you lose track of time while using your phone?", options: ["Always", "Sometimes", "Rarely"] },
-            { text: "Do you stay up late using your phone?", options: ["Always", "Sometimes", "Rarely"] },
-            { text: "Do you check notifications during important tasks?", options: ["Always", "Sometimes", "Rarely"] },
-            { text: "Do you feel bored or uncomfortable without a screen?", options: ["Always", "Sometimes", "Rarely"] }
-        ];
-
-        const scores = {
-            "Always": 3,
-            "Sometimes": 2,
-            "Rarely": 1
-        };
-
-        let currentQuestion = 0;
-        let answers = [];
-
-        const startBtn = document.getElementById("startTestBtn");
-        const quizSection = document.getElementById("quizSection");
-        const questionContainer = document.getElementById("questionContainer");
-        const nextBtn = document.getElementById("nextBtn");
-        const progressBar = document.getElementById("progressBar");
-        const resultBox = document.getElementById("resultBox");
-
-        startBtn.addEventListener("click", () => {
-            document.getElementById("intro-question").style.display = "none";
-            quizSection.style.display = "block";
-            showQuestion();
-        });
-
-        function showQuestion() {
-            const q = questions[currentQuestion];
-            questionContainer.innerHTML = `
-      <div class="question">
-        <p><strong>Q${currentQuestion + 1}:</strong> ${q.text}</p>
-        ${q.options.map((opt, i) => `
-          <input type="radio" id="q${currentQuestion}_opt${i}" name="q${currentQuestion}" value="${opt}" required />
-          <label for="q${currentQuestion}_opt${i}">${opt}</label>
-        `).join("")}
-      </div>
-    `;
-
-            const progress = ((currentQuestion) / questions.length) * 100;
-            progressBar.style.width = progress + "%";
-        }
-
-        nextBtn.addEventListener("click", () => {
-            const selected = document.querySelector(`input[name="q${currentQuestion}"]:checked`);
-            if (!selected) {
-                alert("Please select an answer.");
-                return;
-            }
-
-            answers.push(scores[selected.value]);
-            currentQuestion++;
-
-            if (currentQuestion < questions.length) {
-                showQuestion();
-            } else {
-                showResult();
-            }
-        });
-
-        function showResult() {
-            document.getElementById("quizForm").style.display = "none";
-            const total = answers.reduce((a, b) => a + b, 0);
-            const max = questions.length * 3;
-            let msg = "", advice = "";
-
-            if (total >= 16) {
-                msg = "⚠️ You show strong signs of screen addiction.";
-                advice = "Try scheduling more offline activities and screen-free hours.";
-            } else if (total >= 11) {
-                msg = "🙂 You have some tendencies toward overuse.";
-                advice = "Set app timers and avoid screens before sleep.";
-            } else {
-                msg = "🎉 You're doing great!";
-                advice = "Maintain screen breaks and stay active offline.";
-            }
-
-            resultBox.innerHTML = `
-      <p><strong>Your Score:</strong> ${total} / ${max}</p>
-      <p>${msg}</p>
-      <p><strong>Tip:</strong> ${advice}</p>
-    `;
-            resultBox.style.display = "block";
-
-            // Save to localStorage
-            localStorage.setItem("screenAddictionScore", total);
-        }
-    </script>
+            </div>
 
 
-    <!-- Tips Section -->
-    <section class="section tips" data-aos="fade-right">
-        <h2>Tips to Reduce Screen Time</h2>
-        <ul>
-            <li>⏰ Set screen time limits</li>
-            <li>📴 Turn off notifications</li>
-            <li>📚 Try offline hobbies</li>
-            <li>🚶 Take screen-free walks</li>
-            <li>📱Move social media apps to the last screen.</li>
-            <li>🍝Keep your phone away during meals.</li>
-        </ul>
-    </section>
+            <div class="stats-grid">
+
+                <article class="stat-card">
+
+                    <span class="stat-icon" aria-hidden="true">
+                        🧠
+                    </span>
+
+                    <strong>7</strong>
+
+                    <span>Awareness Questions</span>
+
+                </article>
 
 
-    <!-- Quiz -->
-    <section class="section quiz-section" data-aos="fade-up">
-        <h2>Quick Quiz!</h2>
-        <p>>How many hours do you spend on your phone daily?</p>
-        <div class="quiz-options">
-            <button onclick="checkAnswer('a')">a) Less than 2 hours</button>
-            <button onclick="checkAnswer('b')">b) around 2 - 5 hours</button>
-            <button onclick="checkAnswer('c')">c) More than 5 hours</button>
-        </div>
-        <p id="quizResult"></p>
-    </section>
+                <article class="stat-card">
+
+                    <span class="stat-icon" aria-hidden="true">
+                        🎯
+                    </span>
+
+                    <strong>16</strong>
+
+                    <span>Offline Challenges</span>
+
+                </article>
 
 
-    <!-- Did You Know -->
-    <section class="section fade-section" data-aos="flip-left">
-        <h2>Did You Know?</h2>
-        <ul>
-            <li>The average person checks their phone 96 times a day</li>
-            <li>Using phones before bed reduces deep sleep by 25%.</li>
-            <li>Screen addiction can reduce attention span to just 8 seconds.</li>
-        </ul>
-        <img src="https://cdn-icons-png.flaticon.com/512/3774/3774299.png" alt="Sleep" class="info-img">
-    </section>
+                <article class="stat-card">
+
+                    <span class="stat-icon" aria-hidden="true">
+                        💡
+                    </span>
+
+                    <strong>3</strong>
+
+                    <span>Awareness Levels</span>
+
+                </article>
+
+            </div>
+
+        </section>
+
+        <section id="dangers" class="section two-column" aria-labelledby="what-is-title">
+
+            <div class="content">
+
+                <div class="text-side" data-aos="fade-right">
+
+                    <span class="section-label">
+                        UNDERSTAND THE PROBLEM
+                    </span>
+
+                    <h2 id="what-is-title">
+                        What Is Screen Addiction?
+                    </h2>
+
+                    <p>
+                        Screen overuse refers to spending excessive
+                        amounts of time using smartphones, tablets,
+                        computers, or other digital devices in a way
+                        that starts interfering with everyday life.
+                    </p>
+
+                    <p>
+                        It can affect focus, sleep, relationships,
+                        routines, and the time we spend doing activities
+                        away from our screens.
+                    </p>
 
 
-    <!-- Tip Generator -->
-    <section class="section" data-aos="zoom-in-up">
-        <h2>15 Offline Challenge to do</h2>
-        <button onclick="showAdvice()">Daily Challenge</button>
-        <div id="adviceBox"></div>
-    </section>
+                    <div class="highlight-box">
 
-    <!-- Footer -->
+                        <span class="highlight-icon" aria-hidden="true">
+                            💡
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                The goal isn't zero screen time.
+                            </strong>
+
+                            <p>
+                                The goal is healthier screen habits
+                                and a better balance between online
+                                and offline life.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="image-side" data-aos="fade-left">
+
+                    <img src="addiction_screen.png" alt="Illustration showing excessive screen use"
+                        class="animated-image">
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="section cards-section" aria-labelledby="dangers-title" data-aos="fade-up">
+
+            <div class="section-heading">
+
+                <span class="section-label">
+                    RECOGNIZE THE SIGNS
+                </span>
+
+                <h2 id="dangers-title">
+                    How Can Screen Overuse Affect Us?
+                </h2>
+
+                <p>
+                    Spending too much time on screens may affect
+                    different parts of our daily lives.
+                </p>
+
+            </div>
+
+
+            <div class="cards">
+
+                <article class="card">
+
+                    <div class="card-icon" aria-hidden="true">
+                        👁️
+                    </div>
+
+                    <h3>
+                        Eye Strain
+                    </h3>
+
+                    <p>
+                        Long periods of screen use may contribute
+                        to eye discomfort, dryness, and headaches.
+                    </p>
+
+                </article>
+
+
+                <article class="card">
+
+                    <div class="card-icon" aria-hidden="true">
+                        💤
+                    </div>
+
+                    <h3>
+                        Sleep Disruption
+                    </h3>
+
+                    <p>
+                        Late-night screen use can make it harder
+                        to maintain a healthy sleep routine.
+                    </p>
+
+                </article>
+
+
+                <article class="card">
+
+                    <div class="card-icon" aria-hidden="true">
+                        🧠
+                    </div>
+
+                    <h3>
+                        Focus & Productivity
+                    </h3>
+
+                    <p>
+                        Constant notifications and interruptions
+                        can make it harder to stay focused.
+                    </p>
+
+                </article>
+
+
+                <article class="card">
+
+                    <div class="card-icon" aria-hidden="true">
+                        🗣️
+                    </div>
+
+                    <h3>
+                        Real-Life Connection
+                    </h3>
+
+                    <p>
+                        Too much screen time can take away from
+                        meaningful offline interactions.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+        <section class="section assessment-intro" id="assessment" aria-labelledby="assessment-title" data-aos="zoom-in">
+
+            <div class="assessment-intro-content">
+
+                <span class="section-label">
+                    CHECK YOUR HABITS
+                </span>
+
+                <h2 id="assessment-title">
+                    How Balanced Are Your Screen Habits?
+                </h2>
+
+                <p>
+                    Answer seven quick questions about your everyday
+                    screen habits and get an awareness result.
+                </p>
+
+
+                <div class="assessment-features">
+
+                    <div class="assessment-feature">
+                        <span aria-hidden="true">⏱️</span>
+                        <span>Quick</span>
+                    </div>
+
+                    <div class="assessment-feature">
+                        <span aria-hidden="true">📊</span>
+                        <span>Instant Result</span>
+                    </div>
+
+                    <div class="assessment-feature">
+                        <span aria-hidden="true">🔒</span>
+                        <span>Private</span>
+                    </div>
+
+                </div>
+
+
+                <button id="startTestBtn" class="primary-btn" type="button">
+                    Start the Assessment
+                    <span aria-hidden="true">→</span>
+                </button>
+
+
+                <p class="disclaimer">
+                    <strong>Note:</strong>
+                    This assessment is for awareness and educational
+                    purposes only. It is not a medical diagnosis.
+                </p>
+
+            </div>
+
+        </section>
+
+        <section class="section quiz-section" id="quizSection" aria-labelledby="quiz-title" style="display: none;">
+
+            <div class="quiz-header">
+
+                <span class="section-label">
+                    YOUR SCREEN HABITS
+                </span>
+
+                <h2 id="quiz-title">
+                    Screen Balance Assessment
+                </h2>
+
+                <p>
+                    Choose the answer that best describes you.
+                </p>
+
+            </div>
+
+
+            <div id="progressBarContainer" class="progress-container" aria-label="Quiz progress">
+
+                <div id="progressBar" class="progress-bar"></div>
+
+            </div>
+
+
+            <div class="progress-text" id="progressText" aria-live="polite">
+                Question 1 of 7
+            </div>
+
+
+            <form id="quizForm">
+
+                <div id="questionContainer"></div>
+
+                <div class="quiz-navigation">
+
+                    <button type="button" id="nextBtn">
+                        Next
+                    </button>
+
+                </div>
+
+            </form>
+
+
+            <div id="resultBox" class="result-box" style="display: none;" aria-live="polite">
+
+                <div class="result-header">
+
+                    <span class="result-icon" id="resultIcon" aria-hidden="true">
+                        📊
+                    </span>
+
+                    <span class="section-label">
+                        YOUR RESULT
+                    </span>
+
+                    <h3 id="resultTitle">
+                        Your Screen Balance
+                    </h3>
+
+                </div>
+
+
+                <div class="score-display">
+
+                    <strong id="scoreValue">
+                        0
+                    </strong>
+
+                    <span>
+                        /
+                    </span>
+
+                    <span id="maxScore">
+                        21
+                    </span>
+
+                </div>
+
+
+                <div class="score-meter">
+
+                    <div class="score-meter-fill" id="scoreMeterFill"></div>
+
+                </div>
+
+
+                <p id="resultMessage" class="result-message"></p>
+
+
+                <div class="result-advice">
+
+                    <span aria-hidden="true">
+                        💡
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Your next step
+                        </strong>
+
+                        <p id="resultAdvice"></p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="result-actions">
+
+                    <button type="button" id="retakeQuizBtn" class="primary-btn">
+                        Retake Assessment
+                    </button>
+
+                    <button type="button" class="secondary-btn" onclick="scrollToSection('tips')">
+                        Explore Tips
+                    </button>
+
+                    <button type="button" class="secondary-btn" onclick="scrollToSection('challenge')">
+                        Try a Challenge
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="section replacement-section" id="replacement" aria-labelledby="replacement-title"
+            data-aos="fade-up">
+
+            <div class="section-heading">
+
+                <span class="section-label">
+                    A BETTER APPROACH
+                </span>
+
+                <h2 id="replacement-title">
+                    Don't Just Reduce.
+                    <span>Replace.</span>
+                </h2>
+
+                <p>
+                    Cutting screen time is easier when you have
+                    something meaningful to do instead.
+                </p>
+
+            </div>
+
+
+            <div class="replacement-grid">
+
+                <article class="replacement-card">
+
+                    <div class="replacement-icon">
+                        📱
+                    </div>
+
+                    <div class="replacement-content">
+
+                        <span class="replacement-label">
+                            INSTEAD OF
+                        </span>
+
+                        <h3>
+                            Endless Scrolling
+                        </h3>
+
+                        <div class="replacement-arrow" aria-hidden="true">
+                            ↓
+                        </div>
+
+                        <span class="replacement-label">
+                            TRY
+                        </span>
+
+                        <p>
+                            Read a chapter, draw, or learn something new.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="replacement-card">
+
+                    <div class="replacement-icon">
+                        🎮
+                    </div>
+
+                    <div class="replacement-content">
+
+                        <span class="replacement-label">
+                            INSTEAD OF
+                        </span>
+
+                        <h3>
+                            More Video Games
+                        </h3>
+
+                        <div class="replacement-arrow" aria-hidden="true">
+                            ↓
+                        </div>
+
+                        <span class="replacement-label">
+                            TRY
+                        </span>
+
+                        <p>
+                            Solve a puzzle or play a board game.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="replacement-card">
+
+                    <div class="replacement-icon">
+                        💬
+                    </div>
+
+                    <div class="replacement-content">
+
+                        <span class="replacement-label">
+                            INSTEAD OF
+                        </span>
+
+                        <h3>
+                            Digital Interaction
+                        </h3>
+
+                        <div class="replacement-arrow" aria-hidden="true">
+                            ↓
+                        </div>
+
+                        <span class="replacement-label">
+                            TRY
+                        </span>
+
+                        <p>
+                            Talk to someone face-to-face.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="replacement-card">
+
+                    <div class="replacement-icon">
+                        🌙
+                    </div>
+
+                    <div class="replacement-content">
+
+                        <span class="replacement-label">
+                            INSTEAD OF
+                        </span>
+
+                        <h3>
+                            Late-Night Scrolling
+                        </h3>
+
+                        <div class="replacement-arrow" aria-hidden="true">
+                            ↓
+                        </div>
+
+                        <span class="replacement-label">
+                            TRY
+                        </span>
+
+                        <p>
+                            Create a calm, screen-free bedtime routine.
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+        <section class="section tips" id="tips" aria-labelledby="tips-title" data-aos="fade-right">
+
+            <div class="section-heading">
+
+                <span class="section-label">
+                    SIMPLE HABITS
+                </span>
+
+                <h2 id="tips-title">
+                    Tips to Build Better Screen Habits
+                </h2>
+
+                <p>
+                    You don't need to change everything at once.
+                    Start with one small habit.
+                </p>
+
+            </div>
+
+
+            <div class="tips-grid">
+
+                <article class="tip-item">
+
+                    <span aria-hidden="true">⏰</span>
+
+                    <div>
+                        <h3>Set Screen Breaks</h3>
+
+                        <p>
+                            Take regular breaks during long periods
+                            of screen use.
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <article class="tip-item">
+
+                    <span aria-hidden="true">🔕</span>
+
+                    <div>
+                        <h3>Control Notifications</h3>
+
+                        <p>
+                            Turn off unnecessary notifications that
+                            interrupt your attention.
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <article class="tip-item">
+
+                    <span aria-hidden="true">📚</span>
+
+                    <div>
+                        <h3>Try Offline Hobbies</h3>
+
+                        <p>
+                            Make time for reading, drawing, sports,
+                            crafts, or music.
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <article class="tip-item">
+
+                    <span aria-hidden="true">🚶</span>
+
+                    <div>
+                        <h3>Take Screen-Free Walks</h3>
+
+                        <p>
+                            Give yourself time to move and enjoy
+                            your surroundings without a screen.
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <article class="tip-item">
+
+                    <span aria-hidden="true">📱</span>
+
+                    <div>
+                        <h3>Move Social Apps</h3>
+
+                        <p>
+                            Move social media apps away from your
+                            home screen to reduce automatic checking.
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <article class="tip-item">
+
+                    <span aria-hidden="true">🍽️</span>
+
+                    <div>
+                        <h3>Keep Meals Screen-Free</h3>
+
+                        <p>
+                            Put your phone away during meals and
+                            focus on the people around you.
+                        </p>
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+        <section class="section quick-quiz-section" aria-labelledby="quick-quiz-title" data-aos="fade-up">
+
+            <div class="quick-quiz-container">
+
+                <span class="section-label">
+                    TEST YOUR KNOWLEDGE
+                </span>
+
+                <h2 id="quick-quiz-title">
+                    Quick Quiz
+                </h2>
+
+                <p>
+                    Which habit can help create better screen balance?
+                </p>
+
+
+                <div class="quiz-options">
+
+                    <button type="button" onclick="checkAnswer('a')">
+                        A. Taking regular screen-free breaks
+                    </button>
+
+                    <button type="button" onclick="checkAnswer('b')">
+                        B. Keeping your phone beside you during meals
+                    </button>
+
+                    <button type="button" onclick="checkAnswer('c')">
+                        C. Checking notifications during every task
+                    </button>
+
+                </div>
+
+
+                <p id="quizResult" class="quiz-result" aria-live="polite"></p>
+
+            </div>
+
+        </section>
+
+        <section class="section facts-section" aria-labelledby="facts-title" data-aos="flip-left">
+
+            <div class="section-heading">
+
+                <span class="section-label">
+                    DID YOU KNOW?
+                </span>
+
+                <h2 id="facts-title">
+                    Small Facts, Big Awareness
+                </h2>
+
+                <p>
+                    Screen habits can influence different parts
+                    of our everyday routines.
+                </p>
+
+            </div>
+
+
+            <div class="facts-grid">
+
+                <article class="fact-card">
+
+                    <span class="fact-number" aria-hidden="true">
+                        01
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            Notifications Can Interrupt Focus
+                        </h3>
+
+                        <p>
+                            Frequent interruptions can make it harder
+                            to maintain attention on important tasks.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="fact-card">
+
+                    <span class="fact-number" aria-hidden="true">
+                        02
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            Bedtime Habits Matter
+                        </h3>
+
+                        <p>
+                            Creating a screen-free period before bed
+                            can support a more consistent bedtime routine.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="fact-card">
+
+                    <span class="fact-number" aria-hidden="true">
+                        03
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            Balance Is Personal
+                        </h3>
+
+                        <p>
+                            Healthy screen habits depend on how
+                            technology fits into your daily life.
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+
+            <div class="fact-visual">
+
+                <img src="https://cdn-icons-png.flaticon.com/512/3774/3774299.png"
+                    alt="Illustration representing healthy sleep" class="info-img" loading="lazy">
+
+            </div>
+
+        </section>
+
+        <section class="section challenge-section" id="challenge" aria-labelledby="challenge-title"
+            data-aos="zoom-in-up">
+
+            <div class="challenge-content">
+
+                <div class="challenge-heading">
+
+                    <span class="section-label">
+                        TAKE ACTION
+                    </span>
+
+                    <h2 id="challenge-title">
+                        Your Offline Challenge
+                    </h2>
+
+                    <p>
+                        Don't just read about screen balance.
+                        Try something different today.
+                    </p>
+
+                </div>
+
+
+                <div class="challenge-card" id="challengeCard">
+
+                    <div class="challenge-icon" aria-hidden="true">
+                        🎯
+                    </div>
+
+                    <span class="challenge-label">
+                        TODAY'S CHALLENGE
+                    </span>
+
+                    <div id="adviceBox" class="advice-box" aria-live="polite">
+                        Ready for a challenge?
+                    </div>
+
+
+                    <div class="challenge-actions">
+
+                        <button type="button" class="primary-btn" onclick="showAdvice()">
+                            Get a Challenge
+                            <span aria-hidden="true">→</span>
+                        </button>
+
+                        <button type="button" id="completeChallengeBtn" class="secondary-btn">
+                            Mark as Completed ✓
+                        </button>
+
+                    </div>
+
+
+                    <p id="challengeStatus" class="challenge-status" aria-live="polite"></p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="section habit-section" aria-labelledby="habit-title" data-aos="fade-up">
+
+            <div class="section-heading">
+
+                <span class="section-label">
+                    OFFLINE LIFE
+                </span>
+
+                <h2 id="habit-title">
+                    What Will You Do Offline?
+                </h2>
+
+                <p>
+                    Pick something small that gives your attention
+                    a break from the screen.
+                </p>
+
+            </div>
+
+
+            <div class="habit-grid">
+
+                <button type="button" class="habit-card" data-habit="Reading">
+                    <span aria-hidden="true">📖</span>
+                    <strong>Read</strong>
+                    <small>A few pages</small>
+                </button>
+
+
+                <button type="button" class="habit-card" data-habit="Drawing">
+                    <span aria-hidden="true">🎨</span>
+                    <strong>Create</strong>
+                    <small>Draw or paint</small>
+                </button>
+
+
+                <button type="button" class="habit-card" data-habit="Walking">
+                    <span aria-hidden="true">🚶</span>
+                    <strong>Move</strong>
+                    <small>Take a walk</small>
+                </button>
+
+
+                <button type="button" class="habit-card" data-habit="Talking">
+                    <span aria-hidden="true">🗣️</span>
+                    <strong>Connect</strong>
+                    <small>Talk face-to-face</small>
+                </button>
+
+
+                <button type="button" class="habit-card" data-habit="Puzzle">
+                    <span aria-hidden="true">🧩</span>
+                    <strong>Solve</strong>
+                    <small>Try a puzzle</small>
+                </button>
+
+
+                <button type="button" class="habit-card" data-habit="Music">
+                    <span aria-hidden="true">🎵</span>
+                    <strong>Listen</strong>
+                    <small>Enjoy some music</small>
+                </button>
+
+            </div>
+
+
+            <p id="habitSelection" class="habit-selection" aria-live="polite"></p>
+
+        </section>
+
+        <section class="section final-cta" data-aos="fade-up">
+
+            <div class="final-cta-content">
+
+                <span class="final-icon" aria-hidden="true">
+                    🌱
+                </span>
+
+                <h2>
+                    Your Life Is More Than a Screen.
+                </h2>
+
+                <p>
+                    Start with one small change today.
+                    Put the screen down, look around,
+                    and make room for real life.
+                </p>
+
+
+                <div class="final-actions">
+
+                    <button type="button" class="primary-btn" onclick="scrollToSection('assessment')">
+                        Check Your Habits
+                    </button>
+
+                    <button type="button" class="secondary-btn" onclick="scrollToSection('challenge')">
+                        Take a Challenge
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
     <footer class="footer">
-        <p>&copy; 2025 Created by NDR</p>
+
+        <div class="footer-container">
+
+            <div class="footer-brand">
+
+                <h2>
+                    Screened<span>Out!</span>
+                </h2>
+
+                <p>
+                    An awareness campaign promoting healthier
+                    and more balanced screen habits.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <h3>
+                    Explore
+                </h3>
+
+                <a href="#dangers">
+                    Learn
+                </a>
+
+                <a href="#assessment">
+                    Assessment
+                </a>
+
+                <a href="#tips">
+                    Tips
+                </a>
+
+                <a href="#challenge">
+                    Challenge
+                </a>
+
+            </div>
+
+
+            <div class="footer-message">
+
+                <h3>
+                    Remember
+                </h3>
+
+                <p>
+                    Technology should be part of your life,
+                    not the whole of it.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                &copy; 2026 Screened Out! — Created by NDR
+            </p>
+
+            <p>
+                Built as a summer camp awareness prototype-Level3
+            </p>
+
+        </div>
+
     </footer>
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-    <script>
-        AOS.init();
-        function showAdvice() {
-            const tips = [
-                "Bake homemade cookies or cake.",
-                "Draw or paint something creative.",
-                "Solve a puzzle or play a board game.",
-                "Learn a new dance move.",
-                "Read one chapter of a book",
-                "Learn 5 new words in another language.",
-                "Organize your room or wardrobe.",
-                "Try making a handmade craft (DIY)",
-                "Write a short story or journal your day.",
-                "Try simple yoga poses.",
-                "Do a random act of kindness.",
-                "Build something with LEGO or blocks.",
-                "Write 10 positive affirmations about yourself.",
-            ];
-            const index = Math.floor(Math.random() * tips.length);
-            document.getElementById("adviceBox").innerText = tips[index];
-        }
+    <button id="backToTop" class="back-to-top" type="button" aria-label="Back to top">
+        ↑
+    </button>
 
-        function checkAnswer(answer) {
-            const result = document.getElementById("quizResult");
-            if (answer === "a") {
-                result.textContent = "Awesome! You're managing your screen time well.";
-                result.style.color = "green";
-            } else if (answer === "b") {
-                result.textContent = "Not bad, but you can still reduce your screen time";
-                result.style.color = "blue";
-            } else {
-                result.textContent = "Careful! Try setting screen limits to avoid addiction.";
-                result.style.color = "red";
-            }
-        }
-
-        function scrollToSection(id) {
-            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-        }
-
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
+    <script src="script.js" defer></script>
 
 </body>
 
