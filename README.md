@@ -1,27 +1,70 @@
-# Screen Addiction Awareness
+# Screened Out! — Screen Addiction Awareness
 
-An interactive awareness website developed during the **DECI Level 2 Summer Camp (2025)** to promote healthy digital habits and raise awareness about screen addiction.
+An interactive web experience designed to raise awareness about unhealthy screen habits and encourage a healthier balance between online and offline life.
 
 ## About the Project
 
-This project was designed and developed individually as part of a digital awareness campaign. It aims to educate users about the effects of excessive screen time through an engaging and interactive experience.
+Screened Out! is an interactive awareness website focused on helping users recognize unhealthy screen habits and make healthier choices in their daily lives.
 
-## Features
+Rather than simply telling users to "spend less time on screens", the project focuses on turning screen reduction into practical offline alternatives.
 
-- 🎨 Modern and responsive user interface
-- 📚 Explanation of screen addiction and its risks
-- 📝 Interactive screen addiction self-assessment quiz
-- 📊 Progress bar during the quiz
-- 💡 Daily offline challenge generator
-- 🎭 Smooth animations using AOS (Animate On Scroll)
+> **Don't just reduce, replace!**
 
-## 🛠️ Built With
+
+## My Contribution
+
+This project was developed as part of a team during the DECI Summer Camp.
+
+I was responsible for the website's design and development, including the implementation of the interactive features and the later improvements made during Level 3.
+
+The rest of the team contributed to the project's presentation and supporting materials.
+
+## Features 
+
+- Interactive screen-habit self-assessment
+- Progress tracking during the assessment
+- Personalized awareness result
+- Offline challenge generator
+- Practical tips for healthier screen habits
+- Interactive educational content
+- Quick knowledge quiz
+- Responsive interface
+- Dark mode
+- Smooth scroll animations
+
+## Built With
 
 - HTML5
 - CSS3
 - JavaScript (Vanilla JS)
-- AOS Animation Library
+- AOS (Animate On Scroll)
 
-## Developer
+## Development Journey
+
+### Level 2 — Initial Version
+The project was originally created during the DECI Level 2 Summer Camp as part of a digital awareness campaign.
+
+### Level 3 — Further Development
+One year later, I revisited the project during the DECI Level 3 Summer Camp, improving the original experience and adding new interactive features.
+
+## What I Learned
+
+Through this project, I practiced:
+
+- Building interactive web experiences with JavaScript
+- Structuring and styling responsive web pages
+- Designing user-focused interfaces
+- Turning an awareness idea into an interactive experience
+- Iterating on an existing project instead of starting from scratch
+- Improving and maintaining an existing codebase over time
+
+## Live Demo
+
+[View the Website](https://nada7-ndr.github.io/screen-addiction-awareness/)
+
+## Repository
+
+[View the Source Code](https://github.com/nada7-NDR/screen-addiction-awareness)
+
 
 Developed by **Nada Rushdi**
