@@ -31,13 +31,11 @@ const questions = [
     }
 ];
 
-
 const scores = {
     Always: 3,
     Sometimes: 2,
     Rarely: 1
 };
-
 
 const challenges = [
     "Turn off notifications for an hour.",
@@ -58,22 +56,18 @@ const challenges = [
     "Build something with LEGO or blocks."
 ];
 
-
 const DOM = {
     menuToggle: document.getElementById("menuToggle"),
     navLinks: document.getElementById("navLinks"),
     themeToggle: document.getElementById("themeToggle"),
-
     assessment: document.getElementById("assessment"),
     startTestBtn: document.getElementById("startTestBtn"),
     quizSection: document.getElementById("quizSection"),
     quizForm: document.getElementById("quizForm"),
     questionContainer: document.getElementById("questionContainer"),
     nextBtn: document.getElementById("nextBtn"),
-
     progressBar: document.getElementById("progressBar"),
     progressText: document.getElementById("progressText"),
-
     resultBox: document.getElementById("resultBox"),
     resultIcon: document.getElementById("resultIcon"),
     resultTitle: document.getElementById("resultTitle"),
@@ -83,18 +77,13 @@ const DOM = {
     resultMessage: document.getElementById("resultMessage"),
     resultAdvice: document.getElementById("resultAdvice"),
     retakeQuizBtn: document.getElementById("retakeQuizBtn"),
-
     quizResult: document.getElementById("quizResult"),
-
     adviceBox: document.getElementById("adviceBox"),
     completeChallengeBtn: document.getElementById("completeChallengeBtn"),
     challengeStatus: document.getElementById("challengeStatus"),
-
     habitSelection: document.getElementById("habitSelection"),
-
     backToTop: document.getElementById("backToTop")
 };
-
 
 const state = {
     currentQuestion: 0,
@@ -103,37 +92,25 @@ const state = {
     challengeCompleted: false
 };
 
-
 document.addEventListener("DOMContentLoaded", initializeApp);
-
 
 function initializeApp() {
 
     initializeAOS();
-
     initializeNavigation();
-
     initializeTheme();
-
     initializeAssessment();
-
     initializeChallenge();
-
     initializeHabits();
-
     initializeBackToTop();
-
     initializeScrollEffects();
 
 }
 
-
 function initializeAOS() {
-
     if (typeof AOS === "undefined") {
         return;
     }
-
     AOS.init({
         duration: 800,
         easing: "ease-out-cubic",
@@ -142,41 +119,26 @@ function initializeAOS() {
     });
 }
 
-
 function initializeNavigation() {
-
     if (DOM.menuToggle && DOM.navLinks) {
-
         DOM.menuToggle.addEventListener("click", toggleMobileMenu);
-
     }
 
-
     if (DOM.navLinks) {
-
         const links = DOM.navLinks.querySelectorAll("a");
-
         links.forEach((link) => {
-
             link.addEventListener("click", () => {
-
                 DOM.navLinks.classList.remove("active");
 
                 if (DOM.menuToggle) {
                     DOM.menuToggle.classList.remove("active");
                 }
-
             });
-
         });
-
     }
-
 }
 
-
 function toggleMobileMenu() {
-
     if (!DOM.navLinks) {
         return;
     }
@@ -188,55 +150,33 @@ function toggleMobileMenu() {
     }
 }
 
-
 function initializeTheme() {
-
     const savedTheme = localStorage.getItem("screenTheme");
 
     if (savedTheme === "dark") {
-
         document.body.classList.add("dark-mode");
-
         updateThemeButton(true);
-
     } else {
 
         document.body.classList.remove("dark-mode");
-
         updateThemeButton(false);
-
     }
-
 
     if (DOM.themeToggle) {
-
         DOM.themeToggle.addEventListener("click", toggleTheme);
-
     }
-
 }
 
-
 function toggleTheme() {
-
     const isDark = document.body.classList.toggle("dark-mode");
-
     localStorage.setItem(
         "screenTheme",
         isDark ? "dark" : "light"
     );
-
     updateThemeButton(isDark);
-
 }
 
-
 function updateThemeButton(isDark) {
-
-    if (!DOM.themeToggle) {
-        return;
-    }
-
     DOM.themeToggle.setAttribute(
         "aria-label",
         isDark ? "Switch to light mode" : "Switch to dark mode"
@@ -247,124 +187,87 @@ function updateThemeButton(isDark) {
         isDark ? "Switch to light mode" : "Switch to dark mode"
     );
 
-    const icon = DOM.themeToggle.querySelector(
-        ".theme-icon"
-    );
+    const icon = document.getElementById("themeIcon");
+    const text = document.getElementById("themeText");
 
     if (icon) {
-
         icon.textContent = isDark ? "☀️" : "🌙";
+    }
 
+    if (text) {
+        text.textContent = isDark ? "Light Mode" : "Dark Mode";
     }
 }
-
 
 function initializeAssessment() {
 
     if (DOM.startTestBtn) {
-
         DOM.startTestBtn.addEventListener(
             "click",
             startQuiz
         );
-
     }
 
-
     if (DOM.nextBtn) {
-
         DOM.nextBtn.addEventListener(
             "click",
             handleNextQuestion
         );
-
     }
 
-
     if (DOM.retakeQuizBtn) {
-
         DOM.retakeQuizBtn.addEventListener(
             "click",
             startQuiz
         );
-
     }
 
-
     if (DOM.quizForm) {
-
         DOM.quizForm.addEventListener(
             "submit",
             (event) => {
                 event.preventDefault();
             }
         );
-
     }
-
 }
 
-
 function startQuiz() {
-
     state.currentQuestion = 0;
-
     state.answers = [];
-
 
     if (DOM.resultBox) {
         DOM.resultBox.style.display = "none";
     }
 
-
-
     if (DOM.quizSection) {
         DOM.quizSection.style.display = "block";
     }
-
-
 
     if (DOM.quizForm) {
         DOM.quizForm.style.display = "block";
     }
 
-
-
     if (DOM.nextBtn) {
         DOM.nextBtn.textContent = "Next";
         DOM.nextBtn.disabled = false;
     }
-
     showQuestion();
 
-
     if (DOM.quizSection) {
-
         setTimeout(() => {
-
             DOM.quizSection.scrollIntoView({
                 behavior: "smooth",
                 block: "start"
             });
-
         }, 100);
-
     }
-
 }
-
-
 
 function showQuestion() {
 
-    if (!DOM.questionContainer) {
-        return;
-    }
-
-
     const question =
         questions[state.currentQuestion];
-
 
     if (!question) {
         return;
@@ -373,11 +276,9 @@ function showQuestion() {
     const questionNumber =
         state.currentQuestion + 1;
 
-
     DOM.questionContainer.innerHTML = `
 
         <div class="question">
-
             <p class="question-text">
 
                 <strong>
@@ -385,7 +286,6 @@ function showQuestion() {
                 </strong>
 
                 ${question.text}
-
             </p>
 
             <div class="question-options">
@@ -404,21 +304,17 @@ function showQuestion() {
                                 name="q${state.currentQuestion}"
                                 value="${option}"
                             >
-
                             <label for="${optionId}">
                                 ${option}
                             </label>
 
                         `;
-
             })
             .join("")}
 
             </div>
-
         </div>
     `;
-
 
     updateProgress();
 
@@ -426,51 +322,37 @@ function showQuestion() {
         DOM.questionContainer.querySelector(".question");
 
     if (questionElement) {
-
         questionElement.classList.remove("question");
 
         void questionElement.offsetWidth;
 
         questionElement.classList.add("question");
-
     }
 
-
     if (DOM.nextBtn) {
-
         DOM.nextBtn.textContent =
             state.currentQuestion === questions.length - 1
                 ? "Finish"
                 : "Next";
-
     }
-
 }
 
 
 function updateProgress() {
-
     if (DOM.progressBar) {
-
         const progress =
             ((state.currentQuestion + 1) /
                 questions.length) * 100;
 
         DOM.progressBar.style.width =
             `${progress}%`;
-
     }
-
 
     if (DOM.progressText) {
-
         DOM.progressText.textContent =
             `Question ${state.currentQuestion + 1} of ${questions.length}`;
-
     }
-
 }
-
 
 function handleNextQuestion() {
 
@@ -478,49 +360,28 @@ function handleNextQuestion() {
         `input[name="q${state.currentQuestion}"]:checked`
     );
 
-
     if (!selected) {
-
         showQuizValidationMessage();
-
         return;
     }
-
 
     state.answers[state.currentQuestion] =
         scores[selected.value];
 
-
     state.currentQuestion++;
 
-
     if (state.currentQuestion < questions.length) {
-
         showQuestion();
-
     } else {
-
         showResult();
-
     }
-
 }
 
-
-
 function showQuizValidationMessage() {
-
-    if (!DOM.questionContainer) {
-        return;
-    }
-
-
     let message =
         DOM.questionContainer.querySelector(".validation-message");
 
-
     if (!message) {
-
         message =
             document.createElement("p");
 
@@ -533,25 +394,17 @@ function showQuizValidationMessage() {
         );
 
         DOM.questionContainer.appendChild(message);
-
     }
-
 
     message.textContent =
         "Please select an answer before continuing.";
 
-
     setTimeout(() => {
-
         if (message) {
             message.remove();
         }
-
     }, 2500);
-
 }
-
-
 
 function showResult() {
     if (!DOM.quizForm || !DOM.resultBox) {
@@ -619,12 +472,6 @@ function showResult() {
 
 
 function checkAnswer(answer) {
-
-    if (!DOM.quizResult) {
-        return;
-    }
-
-
     const responses = {
         a: {
             text:
@@ -645,14 +492,11 @@ function checkAnswer(answer) {
         }
     };
 
-
     const response = responses[answer];
-
 
     if (!response) {
         return;
     }
-
 
     DOM.quizResult.textContent =
         response.text;
@@ -663,60 +507,44 @@ function checkAnswer(answer) {
         "warning"
     );
 
-
     DOM.quizResult.classList.add(
         response.className
     );
-
 }
 
-
 function initializeChallenge() {
-
     if (DOM.completeChallengeBtn) {
-
         DOM.completeChallengeBtn.addEventListener(
             "click",
             completeChallenge
         );
-
     }
-
 }
 
 function showAdvice() {
-
     if (!DOM.adviceBox) {
         return;
     }
 
-
     let randomIndex;
 
-
     do {
-
         randomIndex =
             Math.floor(
                 Math.random() * challenges.length
             );
-
     } while (
         challenges.length > 1 &&
         challenges[randomIndex] === state.currentChallenge
     );
 
-
     state.currentChallenge =
         challenges[randomIndex];
 
-
     state.challengeCompleted = false;
-
 
     DOM.adviceBox.textContent =
         state.currentChallenge;
-
 
     if (DOM.challengeStatus) {
 
@@ -726,173 +554,123 @@ function showAdvice() {
         DOM.challengeStatus.classList.remove(
             "completed"
         );
-
     }
 
-
     if (DOM.completeChallengeBtn) {
-
         DOM.completeChallengeBtn.disabled =
             false;
 
         DOM.completeChallengeBtn.textContent =
             "Mark as Completed";
-
     }
-
 }
 
-
 function completeChallenge() {
-
     if (!state.currentChallenge) {
-
         showAdvice();
-
         return;
     }
-
 
     if (state.challengeCompleted) {
         return;
     }
 
-
     state.challengeCompleted = true;
 
-
     if (DOM.challengeStatus) {
-
         DOM.challengeStatus.textContent =
             "🎉 Challenge completed! Great job!";
 
         DOM.challengeStatus.classList.add(
             "completed"
         );
-
     }
 
-
     if (DOM.completeChallengeBtn) {
-
         DOM.completeChallengeBtn.disabled =
             true;
 
         DOM.completeChallengeBtn.textContent =
             "Completed ✓";
-
     }
-
 
     localStorage.setItem(
         "lastCompletedChallenge",
         state.currentChallenge
     );
-
 }
 
-
 function initializeHabits() {
-
     if (!DOM.habitSelection) {
         return;
     }
-
 
     const habitCards =
         DOM.habitSelection.querySelectorAll(
             "[data-habit]"
         );
 
-
     habitCards.forEach((card) => {
-
         card.addEventListener(
             "click",
             () => {
-
                 toggleHabit(card);
-
             }
         );
-
-
         card.addEventListener(
             "keydown",
             (event) => {
-
                 if (
                     event.key === "Enter" ||
                     event.key === " "
                 ) {
-
                     event.preventDefault();
 
                     toggleHabit(card);
-
                 }
-
             }
         );
-
     });
-
 }
 
-
 function toggleHabit(card) {
-
     if (!card) {
         return;
     }
 
-
     card.classList.toggle("selected");
-
 
     const habit =
         card.dataset.habit;
-
 
     if (!habit) {
         return;
     }
 
-
     let savedHabits =
         getSavedHabits();
-
 
     if (card.classList.contains("selected")) {
 
         if (!savedHabits.includes(habit)) {
-
             savedHabits.push(habit);
-
         }
 
     } else {
-
         savedHabits =
             savedHabits.filter(
                 item => item !== habit
             );
-
     }
-
 
     localStorage.setItem(
         "selectedHabits",
         JSON.stringify(savedHabits)
     );
-
 }
 
-
 function getSavedHabits() {
-
     try {
-
         const saved =
             JSON.parse(
                 localStorage.getItem(
@@ -900,111 +678,74 @@ function getSavedHabits() {
                 )
             );
 
-
         return Array.isArray(saved)
             ? saved
             : [];
-
     } catch (error) {
 
         return [];
-
     }
-
 }
 
-
 function scrollToSection(id) {
-
     const section =
         document.getElementById(id);
-
 
     if (!section) {
         return;
     }
-
-
     section.scrollIntoView({
         behavior: "smooth",
         block: "start"
     });
-
 }
 
-
 function initializeBackToTop() {
-
-    if (!DOM.backToTop) {
-        return;
-    }
-
-
     DOM.backToTop.addEventListener(
         "click",
         () => {
-
             window.scrollTo({
                 top: 0,
                 behavior: "smooth"
             });
-
         }
     );
-
 }
 
-
 function initializeScrollEffects() {
-
     window.addEventListener(
         "scroll",
         handleScroll,
         { passive: true }
     );
-
 }
 
-
 function handleScroll() {
-
     if (DOM.backToTop) {
-
         if (window.scrollY > 500) {
-
             DOM.backToTop.classList.add(
                 "show"
             );
-
         } else {
-
             DOM.backToTop.classList.remove(
                 "show"
             );
-
         }
-
     }
-
 }
-
 
 document.addEventListener(
     "keydown",
     (event) => {
-
         if (event.key === "Escape") {
 
             if (DOM.navLinks) {
                 DOM.navLinks.classList.remove("active");
             }
-
             if (DOM.menuToggle) {
                 DOM.menuToggle.classList.remove("active");
             }
-
         }
-
     }
 );
 
