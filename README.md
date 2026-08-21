@@ -36,10 +36,10 @@ Other team members contributed to the project's presentation and supporting mate
 
 ## Built With
 
--**HTML5**— Page structure and semantic content
--**CSS3** — Responsive layouts, styling, and animations
--**Vanilla JavaScript** — Interactivity, dynamic content, assessment logic, and browser storage
--**AOS** — Scroll-based animations
+- **HTML5**— Page structure and semantic content
+- **CSS3** — Responsive layouts, styling, and animations
+- **Vanilla JavaScript** — Interactivity, dynamic content, assessment logic, and browser storage
+- **AOS** — Scroll-based animations
 
 ## Development Journey
 
@@ -75,5 +75,7 @@ Through this project, I practiced:
 [View the Source Code](https://github.com/nada7-NDR/screen-addiction-awareness)
 
 
+
 ### Developed by Nada Rushdi
+
 DECI Level 2 & Level 3 Summer Camps
